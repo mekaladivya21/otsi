@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="search-filter.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js">
+radioObject.checked = false</script>
+
+
+    <title>Search Engine</title>
+
+  </head>
+  <body style="background-color: black;">
+<div class="container main" style="height:174px;">
+    <div style="background:transparent !important;margin-bottom:0px;" class="jumbotron">
+      <div style="font-family: 'Pacifico', cursive;">
+        <p>
+          <center>
+          <font size="8" style="color:  whitesmoke;">Movies Search</font>
+          </center>
+        </p>
+      </div>
+    </div>
+</div>
+
+
+<form action="/search/results" method="post">
+  <div class="container">
+   <div id="parent" style=" display:inline-flex">
+   <div class="filtersm" style="background-color: whitesmoke;width: 214px; margin-top:-65px; height:448px;">
+                                        
+               <!--  <input type="checkbox" id="category-cb" class="block-trigger" style="display:none;" checked="checked"> -->
+<div class="heading_filter" style="text-align:center; font-size:24px;">
+    <label for="heading" class="block-label" id="sf-heading">
+        <i class="trigger-arrow"></i>Filters
+    </label>
+</div>
+      <!--   <div id="topic-bc" class="block-content hidden">
+        </div> -->
+        <div class="block-content">
+           
+                                <div id="filters" class="main">
+                    <ul>
+                            <li class="filters">
+                    <div class="filter1" style="padding-bottom: 10px;">
+                        <p  id="main" >Genres<p>                        
+                    <div class="filter">
+                       <input type="checkbox" name="radios" id="None" value="None"  >all</input> 
+                    </div>
+					<div class="filter">
+                       <input type="checkbox" name="radios" id="Comedy" value="Comedy" >Comedy</input> <span class="counter">(191)</span>
+                    </div>
+					<div class="filter">
+                       <input type="checkbox" name="radios" id="Action" value="Action" >Action </input>  <span class="counter">(325)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="radios" id="Adventure" value="Adventure" >Adventure </input>   <span class="counter">(348)</span>
+                    </div>
+					<div class="filter">
+                       <input type="checkbox" name="radios" id="Thriller" value="Thriller" >Thriller</input>   <span class="counter">(188)</span>
+                    </div>
+							
+					</div>
+							</li>
+							 <li class="filters">
+                     <div class="filter2" style="padding-bottom: 10px;">
+                        <p  id="main" >Country<p>                        
+                    
+					<div class="filter">
+                        <input type="checkbox" name="radios" id="USA" value="USA">USA</input>                        <span class="counter">(525)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="radios" id="UK" value=" UK" >UK</input>                        <span class="counter">(31)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="radios" id="France" value="France" >France</input>                        <span class="counter">(9)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="radios" id="Australia" value="Australia" >Australia</input>                        <span class="counter">(6)</span>
+                    </div>
+							
+							
+					</div>
+							</li>
+							 <li class="filters">
+					 <div class="filter3" style="padding-bottom: 10px;">
+                        <p  id="main" >Title Year<p>                        
+                    
+					<div class="filter">
+                        <input type="checkbox" name="checkbox" id="" >1990-1995</input>                        <span class="counter">(11)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="checkbox" id="" >1995-2000</input>                        <span class="counter">(68)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="checkbox" id="" >2000-2005</input>                        <span class="counter">(147)</span>
+                    </div>
+					<div class="filter">
+                        <input type="checkbox" name="checkbox" id="" >2005-2010</input>                        <span class="counter">(173)</span>
+                    </div>
+							
+					</div>
+							</li>
+                    </ul>
+                </div>
+                <div id="dept-count"></div>
+        </div>
+    </div>	
+</div>
+<div id="child" style="display:inline-block;">
+
+      <div class="input-group" style="display: inline; left: 100px; width: 527px;">
+       <input id="table_filter" type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus aria-label="Text input with segmented button dropdown" style="width:475px; border-radius:8px;left: inherit; top: inherit;">
+	   <button class="btn btn-primary btn-lg" type="submit"style="width:54px">
+			<i class="glyphicon glyphicon-search"></i>
+		</button>
+      </div>
+	  </div>
+	  </div>
+</form>
+
+ 
+  <center style="color:whitesmoke; padding-top: -5px;padding-bottom:22px;width: 300px;margin-left: 523px;margin-top: -352px;">
+      <h1>Results: ({{ res['hits']['total'] }}) </h1>
+  </center>
+
+{% for hit in res['hits']['hits'] %}
+    
+	<div id="child" style="padding-bottom:50px; margin-left:341px;color:whitesmoke">
+        <span style="font-weight:bold;color: #444;">Director_name</span>
+		<span>-{{ hit['_source']['Director_name'] }},</span>
+        <span style="font-weight:bold; margin-left:2em;color: #444;">Duration</span>
+		<span>-{{ hit['_source']['Duration'] }},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Actor_2_name</span>
+		<span>-{{ hit['_source']['Actor_2_name'] }},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Gross</span>
+		<span>-{{ hit['_source']['Gross'] }},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Genres</span>
+		<span>-{{ hit['_source']['Genres']}},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Actor_1_name</span>
+		<span>-{{ hit['_source']['Actor_1_name'] }},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Movie_title</span>
+		<span>-{{ hit['_source']['Movie_title'] }},</span>
+        <span style="font-weight:bold; margin-left:2em;color: #444;">Movie_imdb_link</span>
+		<span>-{{ hit['_source']['Movie_imdb_link'] }},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Country</span>
+		<span>-{{ hit['_source']['Country'] }},</span>
+		<span style="font-weight:bold; margin-left:2em;color: #444;">Title_year</span>
+		<span>-{{ hit['_source']['Title_year'] }},</span>
+        <span style="font-weight:bold; margin-left:2em;color: #444;">Imdb_score</span>
+		<span>-{{ hit['_source']['Imdb_score'] }}.</span>
+
+    </div>
+{% endfor %}
+
+
+        <!--<footer class="footer">
+          <p>&copy; 2017 Ruan Bekker</p>
+        </footer>-->
+
+     
+  </body>
+</html>
